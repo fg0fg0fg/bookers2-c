@@ -17,9 +17,11 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
-  
+
   resources :groups, onry: [:new,:index,:show,:edit,:create,:update] do
     resource :group_users, onry: [:create,:destroy]
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
   end
 
   get "search" => "searches#search"

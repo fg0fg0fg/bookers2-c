@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 
   resources :groups, onry: [:new,:index,:show,:edit,:create,:update] do
     resource :group_users, onry: [:create,:destroy]
-    get "new/mail" => "groups#new_mail"
-    get "send/mail" => "groups#send_mail"
+    resources :event_notices, only: [:new, :create]
+    get "event_notices" => "event_notices#sent"
   end
 
   get "search" => "searches#search"
